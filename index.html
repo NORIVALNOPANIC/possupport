@@ -21,43 +21,58 @@
         h1 {
             font-family: 'Montserrat', sans-serif;
         }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-row .form-group {
+            flex: 0 0 48%;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>NO RIVAL SUPPORT</h1>
         <form id="supportForm">
-            <div class="form-group">
-                <label for="businessName">Nome dell'attività:</label>
-                <input type="text" class="form-control" id="businessName" placeholder="Nome dell'attività" readonly>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="businessName">Nome dell'attività:</label>
+                    <input type="text" class="form-control" id="businessName" placeholder="Nome dell'attività" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="locationName">Nome della sede aziendale:</label>
+                    <input type="text" class="form-control" id="locationName" placeholder="Nome della sede aziendale" readonly>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="businessId">ID aziendale:</label>
-                <input type="text" class="form-control" id="businessId" placeholder="ID aziendale" readonly>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="businessId">ID aziendale:</label>
+                    <input type="text" class="form-control" id="businessId" placeholder="ID aziendale" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="locationId">ID sede aziendale:</label>
+                    <input type="text" class="form-control" id="locationId" placeholder="ID sede aziendale" readonly>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="locationName">Nome della sede aziendale:</label>
-                <input type="text" class="form-control" id="locationName" placeholder="Nome della sede aziendale" readonly>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="deviceName">Nome del dispositivo cassa:</label>
+                    <input type="text" class="form-control" id="deviceName" placeholder="Nome del dispositivo cassa" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="deviceId">ID del dispositivo cassa:</label>
+                    <input type="text" class="form-control" id="deviceId" placeholder="ID del dispositivo cassa" readonly>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="locationId">ID sede aziendale:</label>
-                <input type="text" class="form-control" id="locationId" placeholder="ID sede aziendale" readonly>
-            </div>
-            <div class="form-group">
-                <label for="deviceName">Nome del dispositivo cassa:</label>
-                <input type="text" class="form-control" id="deviceName" placeholder="Nome del dispositivo cassa" readonly>
-            </div>
-            <div class="form-group">
-                <label for="deviceId">ID del dispositivo cassa:</label>
-                <input type="text" class="form-control" id="deviceId" placeholder="ID del dispositivo cassa" readonly>
-            </div>
-            <div class="form-group">
-                <label for="userName">Nome dell'utente cassa:</label>
-                <input type="text" class="form-control" id="userName" placeholder="Nome dell'utente cassa" readonly>
-            </div>
-            <div class="form-group">
-                <label for="userId">ID dell'utente cassa:</label>
-                <input type="text" class="form-control" id="userId" placeholder="ID dell'utente cassa" readonly>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="userName">Nome dell'utente cassa:</label>
+                    <input type="text" class="form-control" id="userName" placeholder="Nome dell'utente cassa" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="userId">ID dell'utente cassa:</label>
+                    <input type="text" class="form-control" id="userId" placeholder="ID dell'utente cassa" readonly>
+                </div>
             </div>
             <div class="form-group">
                 <label for="requestDetail">Dettaglio richiesta:</label>

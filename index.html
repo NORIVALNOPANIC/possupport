@@ -22,12 +22,12 @@
             width: 100%;
         }
         .logo {
-            max-width: 200px; /* Doppio delle dimensioni originali */
+            max-width: 200px;
             margin-bottom: 20px;
         }
         h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 200%; /* Stessa altezza del logo */
+            font-size: 200%;
         }
         .info {
             text-align: left;
@@ -39,7 +39,7 @@
         }
         .info p {
             margin: 5px 0;
-            font-size: 0.9rem; /* Font più piccolo per le informazioni */
+            font-size: 0.9rem;
         }
         .info strong {
             display: inline-block;
@@ -49,7 +49,17 @@
         .info span {
             display: inline-block;
         }
+        #summary {
+            display: none;
+            margin-top: 20px;
+        }
     </style>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("IoiZWoYOPfglP3n2SFHL-");
+        })();
+    </script>
 </head>
 <body>
     <div class="container">
@@ -67,7 +77,7 @@
             <p><strong>Ora della richiesta:</strong> <span id="requestTime"></span></p>
             <p><strong>Ticket Number:</strong> <span id="ticketNumber"></span></p>
         </div>
-        <form id="supportForm">
+        <form id="supportForm" onsubmit="sendEmail(event)">
             <div class="form-group">
                 <label for="requestDetail">Dettaglio richiesta:</label>
                 <textarea class="form-control" id="requestDetail" placeholder="Descrivi il problema" rows="3"></textarea>
@@ -81,11 +91,15 @@
                     <option>Cambio Menu</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-outline-primary">Submit</button>
+            <button type="submit" class="btn btn-outline-primary">Invia la richiesta</button>
         </form>
+        <div id="summary">
+            <h2>Riepilogo della Richiesta</h2>
+            <p><strong>Numero del Ticket:</strong> <span id="summaryTicketNumber"></span></p>
+            <p>Un operatore la contatterà il prima possibile.</p>
+        </div>
     </div>
     <script>
-        // Funzione per ottenere l'ora corrente e formattarla
         function getCurrentDateTime() {
             const now = new Date();
             const date = now.toLocaleDateString('it-IT');
@@ -93,13 +107,11 @@
             return `${date} ${time}`;
         }
 
-        // Funzione per generare un numero di ticket casuale
         function generateTicketNumber() {
             const randomNum = Math.floor(10000 + Math.random() * 90000);
             return `#NR${randomNum}`;
         }
 
-        // Funzione per popolare i campi con le variabili dall'URL
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const fields = [
@@ -113,10 +125,42 @@
                 }
             });
 
-            // Popolare l'ora della richiesta e il numero del ticket
             document.getElementById('requestTime').textContent = getCurrentDateTime();
             document.getElementById('ticketNumber').textContent = generateTicketNumber();
         };
+
+        function sendEmail(event) {
+            event.preventDefault();
+
+            const templateParams = {
+                business_name: document.getElementById('businessName').textContent,
+                location_name: document.getElementById('locationName').textContent,
+                business_id: document.getElementById('businessId').textContent,
+                location_id: document.getElementById('locationId').textContent,
+                device_name: document.getElementById('deviceName').textContent,
+                device_id: document.getElementById('deviceId').textContent,
+                user_name: document.getElementById('userName').textContent,
+                user_id: document.getElementById('userId').textContent,
+                request_time: document.getElementById('requestTime').textContent,
+                ticket_number: document.getElementById('ticketNumber').textContent,
+                request_detail: document.getElementById('requestDetail').value,
+                request_type: document.getElementById('requestType').value
+            };
+
+            emailjs.send('service_r733b7i', 'template_yxd9qd8', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    showSummary();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                });
+        }
+
+        function showSummary() {
+            document.getElementById('supportForm').style.display = 'none';
+            document.getElementById('summaryTicketNumber').textContent = document.getElementById('ticketNumber').textContent;
+            document.getElementById('summary').style.display = 'block';
+        }
     </script>
 </body>
 </html>

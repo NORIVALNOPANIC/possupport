@@ -1,0 +1,32 @@
+<html>\
+<head>\
+  <title>Lightspeed Web Extension</title>\
+</head>\
+<body>\
+  <input type="hidden" id="businessId" value="">\
+  <script>\
+    function printContext() \{\
+      var businessId = posContext.businessId;\
+      document.getElementById("businessId").value = businessId;\
+      sendBusinessIdToAppsScript(businessId);\
+    \}\
+\
+    function sendBusinessIdToAppsScript(businessId) \{\
+      var url = 'https://script.google.com/macros/s/AKfycbyZsSkGlL7UJiGVgvEPFHL125FgxL9SmtvGtzzJeSKqU957KxHNTTyGTQGviJbSAKgW/exec' + '?businessId=' + businessId;\
+      var xhr = new XMLHttpRequest();\
+      xhr.open('GET', url, true);\
+      xhr.onreadystatechange = function() \{\
+        if (xhr.readyState == 4 && xhr.status == 200) \{\
+          console.log('Business ID sent to Google Apps Script successfully');\
+        \}\
+      \};\
+      xhr.send();\
+    \}\
+\
+    window.onload = function() \{\
+      printContext();\
+    \};\
+  </script>\
+</body>\
+</html>\
+}

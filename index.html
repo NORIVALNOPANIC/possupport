@@ -28,26 +28,68 @@
         <h1>NO RIVAL SUPPORT</h1>
         <form id="supportForm">
             <div class="form-group">
-                <label for="businessId">Business ID:</label>
-                <input type="text" class="form-control" id="businessId" placeholder="Inserisci il Business ID" value="">
+                <label for="businessName">Nome dell'attività:</label>
+                <input type="text" class="form-control" id="businessName" placeholder="Nome dell'attività" readonly>
             </div>
             <div class="form-group">
-                <label for="problemDescription">Descrizione del Problema:</label>
-                <textarea class="form-control" id="problemDescription" placeholder="Descrivi il problema" rows="4"></textarea>
+                <label for="businessId">ID aziendale:</label>
+                <input type="text" class="form-control" id="businessId" placeholder="ID aziendale" readonly>
+            </div>
+            <div class="form-group">
+                <label for="locationName">Nome della sede aziendale:</label>
+                <input type="text" class="form-control" id="locationName" placeholder="Nome della sede aziendale" readonly>
+            </div>
+            <div class="form-group">
+                <label for="locationId">ID sede aziendale:</label>
+                <input type="text" class="form-control" id="locationId" placeholder="ID sede aziendale" readonly>
+            </div>
+            <div class="form-group">
+                <label for="deviceName">Nome del dispositivo cassa:</label>
+                <input type="text" class="form-control" id="deviceName" placeholder="Nome del dispositivo cassa" readonly>
+            </div>
+            <div class="form-group">
+                <label for="deviceId">ID del dispositivo cassa:</label>
+                <input type="text" class="form-control" id="deviceId" placeholder="ID del dispositivo cassa" readonly>
+            </div>
+            <div class="form-group">
+                <label for="userName">Nome dell'utente cassa:</label>
+                <input type="text" class="form-control" id="userName" placeholder="Nome dell'utente cassa" readonly>
+            </div>
+            <div class="form-group">
+                <label for="userId">ID dell'utente cassa:</label>
+                <input type="text" class="form-control" id="userId" placeholder="ID dell'utente cassa" readonly>
+            </div>
+            <div class="form-group">
+                <label for="requestDetail">Dettaglio richiesta:</label>
+                <textarea class="form-control" id="requestDetail" placeholder="Descrivi il problema" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="requestType">Tipo di richiesta:</label>
+                <select class="form-control" id="requestType">
+                    <option>Errore Epson</option>
+                    <option>Richiesta Generale</option>
+                    <option>Codice Operatore</option>
+                    <option>Cambio Menu</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-outline-primary">Submit</button>
         </form>
     </div>
     <script>
-        // Funzione per popolare il campo con una variabile
+        // Funzione per popolare i campi con le variabili dall'URL
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const businessId = urlParams.get('businessId');
-            if (businessId) {
-                document.getElementById('businessId').value = businessId;
-            }
+            const fields = [
+                'businessName', 'businessId', 'locationName', 'locationId',
+                'deviceName', 'deviceId', 'userName', 'userId'
+            ];
+            fields.forEach(field => {
+                const value = urlParams.get(field);
+                if (value) {
+                    document.getElementById(field).value = value;
+                }
+            });
         };
     </script>
 </body>
 </html>
-

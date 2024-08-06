@@ -1,48 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-  <title>Lightspeed Web Extension</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    h1 {
-      font-size: 2em;
-      text-align: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Rival Support</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Source+Sans+Pro:200" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
 </head>
 <body>
-  <h1>NORIVAL CENTRALE</h1>
-  <input type="hidden" id="businessId" value="">
-  <script>
-    function printContext() {
-      var businessId = posContext.businessId;
-      document.getElementById("businessId").value = businessId;
-      sendBusinessIdToAppsScript(businessId);
-    }
-
-    function sendBusinessIdToAppsScript(businessId) {
-      var url = 'https://script.google.com/macros/s/AKfycbyZsSkGlL7UJiGVgvEPFHL125FgxL9SmtvGtzzJeSKqU957KxHNTTyGTQGviJbSAKgW/exec' + '?businessId=' + businessId;
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', url, true);
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          console.log('Business ID sent to Google Apps Script successfully');
-        }
-      };
-      xhr.send();
-    }
-
-    window.onload = function() {
-      printContext();
-    };
-  </script>
+    <div class="container">
+        <h1>NO RIVAL SUPPORT</h1>
+        <form id="supportForm">
+            <div class="form-group">
+                <label for="businessId">Business ID:</label>
+                <input type="text" class="form-control" id="businessId" placeholder="Inserisci il Business ID" value="">
+            </div>
+            <div class="form-group">
+                <label for="problemDescription">Descrizione del Problema:</label>
+                <textarea class="form-control" id="problemDescription" placeholder="Descrivi il problema" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </form>
+    </div>
+    <script>
+        // Funzione per popolare il campo con una variabile
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const businessId = urlParams.get('businessId');
+            if (businessId) {
+                document.getElementById('businessId').value = businessId;
+            }
+        };
+    </script>
 </body>
 </html>
+

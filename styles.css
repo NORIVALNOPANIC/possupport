@@ -1,3 +1,6 @@
+
+
+/* Stile generale per tutti i dispositivi */
 body {
     font-family: 'Montserrat', sans-serif;
     display: flex;
@@ -7,6 +10,7 @@ body {
     background-color: #f0f0f5;
     padding: 20px;
     margin: 0;
+    overflow-y: auto;
 }
 .container {
     background-color: #ffffff;
@@ -15,7 +19,7 @@ body {
     width: 100%;
     max-width: 600px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    overflow-y: auto; /* Consente lo scorrimento su dispositivi con dimensioni ridotte */
+    overflow-y: auto;
 }
 .logo {
     max-width: 120px;
@@ -27,28 +31,32 @@ h1 {
     margin-bottom: 20px;
     text-align: center;
 }
-.info p {
-    margin: 5px 0;
-    font-size: 0.85rem;
-    line-height: 1.4;
-}
-.form-group, .form-check {
-    margin-bottom: 15px;
-}
-input, textarea, select {
-    border-radius: 8px;
-}
-button[type="submit"] {
-    background-color: #007aff;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-button[type="submit"]:hover {
-    background-color: #005bb5;
-}
 
+/* Media query per dispositivi in modalità landscape */
+@media screen and (orientation: landscape) and (max-width: 1024px) {
+    .container {
+        max-width: 900px; /* Allarga il contenitore per adattarsi allo schermo orizzontale dell'iPad */
+        padding: 20px; /* Riduci il padding per risparmiare spazio */
+    }
+    .info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 12px;
+    }
+    .info p {
+        width: 48%; /* Ogni informazione occupa il 48% della larghezza per metterle affiancate */
+        font-size: 0.85rem;
+        margin: 5px 0;
+    }
+    .form-group, .form-check {
+        margin-bottom: 10px; /* Riduci il margine tra i gruppi del form per rendere il layout più compatto */
+    }
+    button[type="submit"] {
+        width: 100%; /* Rendi il pulsante di invio a tutta larghezza per maggiore visibilità */
+        padding: 12px;
+        font-size: 1rem;
+    }
+}

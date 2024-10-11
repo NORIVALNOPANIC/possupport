@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400|Source+Sans+Pro:200" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <style>
+        /* Il tuo CSS è qui */
         body {
             font-family: 'Montserrat', sans-serif;
             display: flex;
@@ -25,167 +26,21 @@
             max-width: 600px;
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
         }
-        .logo {
-            max-width: 150px;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
-        .info {
-            text-align: left;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 12px;
-        }
-        .info p {
-            margin: 5px 0;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-        .info strong {
-            font-weight: 500;
-        }
-        label {
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-        input[type="text"], input[type="email"], input[type="file"], textarea, select {
-            border: 1px solid #d1d1d1;
-            border-radius: 8px;
-            padding: 10px;
-            font-size: 0.95rem;
-            width: 100%;
-            margin-bottom: 15px;
-            transition: border-color 0.3s;
-        }
-        input[type="text"]:focus, input[type="email"]:focus, input[type="file"]:focus, textarea:focus, select:focus {
-            border-color: #007aff;
-            outline: none;
-        }
-        textarea {
-            resize: none;
-        }
-        .form-check-label {
-            margin-left: 5px;
-        }
-        button[type="submit"] {
-            background-color: #007aff;
-            color: #ffffff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button[type="submit"]:hover {
-            background-color: #005bb5;
-        }
-        #summary {
-            display: none;
-            margin-top: 20px;
-            text-align: center;
-        }
+        /* Resto del tuo CSS */
     </style>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init("IoiZWoYOPfglP3n2SFHL-");
-        })();
-    </script>
 </head>
 <body>
     <div class="container">
-        <img src="https://norival.com/wp-content/uploads/2023/10/intero-e1702847187131.png" alt="No Rival Logo" class="logo">
-        <h1>SUPPORTO</h1>
-        <div class="info">
-            <p><strong>Nome dell'attività:</strong> <span id="businessName"></span></p>
-            <p><strong>Nome della sede aziendale:</strong> <span id="locationName"></span></p>
-            <p><strong>ID aziendale:</strong> <span id="businessId"></span></p>
-            <p><strong>ID sede aziendale:</strong> <span id="locationId"></span></p>
-            <p><strong>Nome del dispositivo cassa:</strong> <span id="deviceName"></span></p>
-            <p><strong>ID del dispositivo cassa:</strong> <span id="deviceId"></span></p>
-            <p><strong>Nome dell'utente cassa:</strong> <span id="userName"></span></p>
-            <p><strong>ID dell'utente cassa:</strong> <span id="userId"></span></p>
-            <p><strong>Ora della richiesta:</strong> <span id="requestTime"></span></p>
-            <p><strong>Ticket Number:</strong> <span id="ticketNumber"></span></p>
-        </div>
-        <form id="supportForm" onsubmit="sendEmail(event)">
-            <div class="form-group">
-                <label for="requestDetail">Dettaglio richiesta:</label>
-                <textarea class="form-control" id="requestDetail" placeholder="Descrivi il problema" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="requestType">Tipo di richiesta:</label>
-                <select class="form-control" id="requestType">
-                    <option>Richiesta Generale</option>
-                    <option>Errore Epson</option>
-                    <option>Codice Operatore</option>
-                    <option>Cambio Menu</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="contactPhone">Contatti telefonici:</label>
-                <input type="text" class="form-control" id="contactPhone" placeholder="Inserisci il numero di telefono">
-            </div>
-            <div class="form-group">
-                <label for="contactEmail">Email:</label>
-                <input type="email" class="form-control" id="contactEmail" placeholder="Inserisci l'email">
-            </div>
-            <div class="form-group">
-                <label for="attachment">Allegato:</label>
-                <input type="file" class="form-control-file" id="attachment">
-            </div>
-            <div class="form-group">
-                <label for="serviceBlock">Blocco servizio:</label>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="serviceBlock">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-outline-primary">Invia la richiesta</button>
-        </form>
-        <div id="summary">
-            <h2>Riepilogo della Richiesta</h2>
-            <p><strong>Numero del Ticket:</strong> <span id="summaryTicketNumber"></span></p>
-            <p>Un operatore la contatterà il prima possibile.</p>
-        </div>
+        <!-- Il contenuto del tuo form è qui -->
     </div>
+    <!-- Inserisci il tuo JavaScript qui sotto, prima di chiudere il tag body -->
     <script>
-        function getCurrentDateTime() {
-            const now = new Date();
-            const date = now.toLocaleDateString('it-IT');
-            const time = now.toLocaleTimeString('it-IT');
-            return `${date} ${time}`;
-        }
+        // Inizializza EmailJS
+        (function() {
+            emailjs.init("IoiZWoYOPfglP3n2SFHL-");
+        })();
 
-        function generateTicketNumber() {
-            const randomNum = Math.floor(10000 + Math.random() * 90000);
-            return `#NR${randomNum}`;
-        }
-
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const fields = [
-                'businessName', 'businessId', 'locationName', 'locationId',
-                'deviceName', 'deviceId', 'userName', 'userId'
-            ];
-            fields.forEach(field => {
-                const value = urlParams.get(field);
-                if (value) {
-                    document.getElementById(field).textContent = value;
-                }
-            });
-
-            document.getElementById('requestTime').textContent = getCurrentDateTime();
-            document.getElementById('ticketNumber').textContent = generateTicketNumber();
-        };
-
+        // Funzione per inviare i dati del modulo al Google Sheet tramite il Google Apps Script
         function sendEmail(event) {
             event.preventDefault();
 
@@ -207,19 +62,61 @@
                 service_block: document.getElementById('serviceBlock').checked
             };
 
-            emailjs.send('service_r733b7i', 'template_yxd9qd8', templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    showSummary();
-                }, function(error) {
-                    console.log('FAILED...', error);
-                });
+            // URL dello script Google Apps Script aggiornato
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyus8tRS1wSjJD2Y8YuYZMQmdgZTodvoEYuxytO_YskFhSxPRuBGLjx0TRFz8MJTojL/exec';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(templateParams)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('SUCCESS!', data);
+                showSummary();
+            })
+            .catch(error => {
+                console.error('Errore...', error);
+            });
         }
 
+        // Funzione per mostrare il riepilogo della richiesta
         function showSummary() {
             document.getElementById('supportForm').style.display = 'none';
             document.getElementById('summaryTicketNumber').textContent = document.getElementById('ticketNumber').textContent;
             document.getElementById('summary').style.display = 'block';
+        }
+
+        // Al caricamento della pagina, inizializza i valori e imposta la data corrente
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const fields = [
+                'businessName', 'businessId', 'locationName', 'locationId',
+                'deviceName', 'deviceId', 'userName', 'userId'
+            ];
+            fields.forEach(field => {
+                const value = urlParams.get(field);
+                if (value) {
+                    document.getElementById(field).textContent = value;
+                }
+            });
+
+            document.getElementById('requestTime').textContent = getCurrentDateTime();
+            document.getElementById('ticketNumber').textContent = generateTicketNumber();
+        };
+
+        // Funzione per generare un numero di ticket casuale
+        function generateTicketNumber() {
+            const randomNum = Math.floor(10000 + Math.random() * 90000);
+            return `#NR${randomNum}`;
+        }
+
+        // Funzione per ottenere la data e l'ora corrente
+        function getCurrentDateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString('it-IT');
+            const time = now.toLocaleTimeString('it-IT');
+            return `${date} ${time}`;
         }
     </script>
 </body>

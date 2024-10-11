@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supporto</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Source+Sans+Pro:200" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400|Source+Sans+Pro:200" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <style>
         body {
@@ -13,45 +13,84 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f8f9fa;
+            background-color: #f0f0f5;
             padding: 20px;
+            margin: 0;
         }
         .container {
-            text-align: center;
-            max-width: 600px;
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
             width: 100%;
+            max-width: 600px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
         }
         .logo {
-            max-width: 200px;
+            max-width: 150px;
             margin-bottom: 20px;
         }
         h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 200%;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 30px;
         }
         .info {
             text-align: left;
             margin-bottom: 20px;
-            background-color: white;
+            background-color: #f9f9f9;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
         }
         .info p {
             margin: 5px 0;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
         }
         .info strong {
-            display: inline-block;
-            width: 150px;
-            font-weight: bold;
+            font-weight: 500;
         }
-        .info span {
-            display: inline-block;
+        label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="email"], input[type="file"], textarea, select {
+            border: 1px solid #d1d1d1;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.95rem;
+            width: 100%;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, input[type="file"]:focus, textarea:focus, select:focus {
+            border-color: #007aff;
+            outline: none;
+        }
+        textarea {
+            resize: none;
+        }
+        .form-check-label {
+            margin-left: 5px;
+        }
+        button[type="submit"] {
+            background-color: #007aff;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #005bb5;
         }
         #summary {
             display: none;
             margin-top: 20px;
+            text-align: center;
         }
     </style>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
@@ -90,6 +129,24 @@
                     <option>Codice Operatore</option>
                     <option>Cambio Menu</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="contactPhone">Contatti telefonici:</label>
+                <input type="text" class="form-control" id="contactPhone" placeholder="Inserisci il numero di telefono">
+            </div>
+            <div class="form-group">
+                <label for="contactEmail">Email:</label>
+                <input type="email" class="form-control" id="contactEmail" placeholder="Inserisci l'email">
+            </div>
+            <div class="form-group">
+                <label for="attachment">Allegato:</label>
+                <input type="file" class="form-control-file" id="attachment">
+            </div>
+            <div class="form-group">
+                <label for="serviceBlock">Blocco servizio:</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="serviceBlock">
+                </div>
             </div>
             <button type="submit" class="btn btn-outline-primary">Invia la richiesta</button>
         </form>
@@ -144,7 +201,10 @@
                 request_time: document.getElementById('requestTime').textContent,
                 ticket_number: document.getElementById('ticketNumber').textContent,
                 request_detail: document.getElementById('requestDetail').value,
-                request_type: document.getElementById('requestType').value
+                request_type: document.getElementById('requestType').value,
+                contact_phone: document.getElementById('contactPhone').value,
+                contact_email: document.getElementById('contactEmail').value,
+                service_block: document.getElementById('serviceBlock').checked
             };
 
             emailjs.send('service_r733b7i', 'template_yxd9qd8', templateParams)

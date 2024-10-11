@@ -4,120 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supporto</title>
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400|Source+Sans+Pro:200" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <style>
-        /* Il tuo CSS è qui */
-        body {
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f5;
-            padding: 20px;
-            margin: 0;
-        }
-        .container {
-            background-color: #ffffff;
-            border-radius: 16px;
-            padding: 30px;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-        }
-        /* Resto del tuo CSS */
-    </style>
 </head>
 <body>
     <div class="container">
         <!-- Il contenuto del tuo form è qui -->
+        <img src="assets/logo.png" alt="No Rival Logo" class="logo">
+        <h1>SUPPORTO</h1>
+        <div class="info">
+            <p><strong>Nome dell'attività:</strong> <span id="businessName"></span></p>
+            <!-- Altri campi come prima -->
+        </div>
+        <form id="supportForm" onsubmit="sendEmail(event)">
+            <!-- Resto del form come prima -->
+        </form>
+        <div id="summary">
+            <h2>Riepilogo della Richiesta</h2>
+            <p><strong>Numero del Ticket:</strong> <span id="summaryTicketNumber"></span></p>
+            <p>Un operatore la contatterà il prima possibile.</p>
+        </div>
     </div>
-    <!-- Inserisci il tuo JavaScript qui sotto, prima di chiudere il tag body -->
-    <script>
-        // Inizializza EmailJS
-        (function() {
-            emailjs.init("IoiZWoYOPfglP3n2SFHL-");
-        })();
 
-        // Funzione per inviare i dati del modulo al Google Sheet tramite il Google Apps Script
-        function sendEmail(event) {
-            event.preventDefault();
-
-            const templateParams = {
-                business_name: document.getElementById('businessName').textContent,
-                location_name: document.getElementById('locationName').textContent,
-                business_id: document.getElementById('businessId').textContent,
-                location_id: document.getElementById('locationId').textContent,
-                device_name: document.getElementById('deviceName').textContent,
-                device_id: document.getElementById('deviceId').textContent,
-                user_name: document.getElementById('userName').textContent,
-                user_id: document.getElementById('userId').textContent,
-                request_time: document.getElementById('requestTime').textContent,
-                ticket_number: document.getElementById('ticketNumber').textContent,
-                request_detail: document.getElementById('requestDetail').value,
-                request_type: document.getElementById('requestType').value,
-                contact_phone: document.getElementById('contactPhone').value,
-                contact_email: document.getElementById('contactEmail').value,
-                service_block: document.getElementById('serviceBlock').checked
-            };
-
-            // URL dello script Google Apps Script aggiornato
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyus8tRS1wSjJD2Y8YuYZMQmdgZTodvoEYuxytO_YskFhSxPRuBGLjx0TRFz8MJTojL/exec';
-
-            fetch(scriptURL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(templateParams)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('SUCCESS!', data);
-                showSummary();
-            })
-            .catch(error => {
-                console.error('Errore...', error);
-            });
-        }
-
-        // Funzione per mostrare il riepilogo della richiesta
-        function showSummary() {
-            document.getElementById('supportForm').style.display = 'none';
-            document.getElementById('summaryTicketNumber').textContent = document.getElementById('ticketNumber').textContent;
-            document.getElementById('summary').style.display = 'block';
-        }
-
-        // Al caricamento della pagina, inizializza i valori e imposta la data corrente
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const fields = [
-                'businessName', 'businessId', 'locationName', 'locationId',
-                'deviceName', 'deviceId', 'userName', 'userId'
-            ];
-            fields.forEach(field => {
-                const value = urlParams.get(field);
-                if (value) {
-                    document.getElementById(field).textContent = value;
-                }
-            });
-
-            document.getElementById('requestTime').textContent = getCurrentDateTime();
-            document.getElementById('ticketNumber').textContent = generateTicketNumber();
-        };
-
-        // Funzione per generare un numero di ticket casuale
-        function generateTicketNumber() {
-            const randomNum = Math.floor(10000 + Math.random() * 90000);
-            return `#NR${randomNum}`;
-        }
-
-        // Funzione per ottenere la data e l'ora corrente
-        function getCurrentDateTime() {
-            const now = new Date();
-            const date = now.toLocaleDateString('it-IT');
-            const time = now.toLocaleTimeString('it-IT');
-            return `${date} ${time}`;
-        }
-    </script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </body>
 </html>

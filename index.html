@@ -40,7 +40,7 @@
         </div>
         
         <!-- The support request form -->
-        <form id="supportForm" onsubmit="sendEmail(event)">
+        <form id="supportForm">
             <!-- Text area to describe the issue -->
             <div class="form-group">
                 <label for="requestDetail">Dettaglio richiesta:</label>
@@ -80,10 +80,10 @@
             <button type="submit" class="btn btn-outline-primary">Invia la richiesta</button>
         </form>
     </div>
-    
-    <!-- Linking the JavaScript file to add interactive functionality -->
-    <script src="script.js"></script>
+
     <!-- Linking EmailJS library for email handling -->
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <!-- Linking the JavaScript file to add interactive functionality -->
+    <script src="script.js"></script>
 </body>
 </html>
